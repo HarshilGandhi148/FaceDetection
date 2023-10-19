@@ -1,11 +1,9 @@
 import cv2
 
-face_classifier = cv2.CascadeClassifier(
-    cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
-)
-front_classifier = cv2.CascadeClassifier(
-    cv2.data.haarcascades + "haarcascade_profileface.xml"
-)
+#Credit to https://www.datacamp.com/tutorial/face-detection-python-opencv
+
+face_classifier = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+front_classifier = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_profileface.xml")
 
 video = cv2.VideoCapture(0)
 
@@ -24,23 +22,15 @@ def create_front_box(image):
     return fronts
 
 while True:
-    result, frame = video.read()
+    result, vid = video.read()
+    
+    if result is False: break
 
-    if result is False:
-        break
-
-    faces = create_face_box(
-        frame
-    )
-
-    fronts = create_front_box(
-        frame
-    )
-
-    cv2.imshow(
-        "Face Detection", frame
-    )
-
+    #creating boxes
+    faces = create_face_box(vid)
+    fronts = create_front_box(vid)
+    
+    cv2.imshow("Face Detection", vid)
     k = cv2.waitKey(1) & 0xFF
     #esc
     if k == 27:
