@@ -1,7 +1,5 @@
 import cv2
 
-#Credit to https://www.datacamp.com/tutorial/face-detection-python-opencv
-
 face_classifier = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 front_classifier = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_profileface.xml")
 
